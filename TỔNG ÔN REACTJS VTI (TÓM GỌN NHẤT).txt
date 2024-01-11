@@ -1,0 +1,103 @@
+___________________________________________________________________TỔNG ÔN LÝ THUYẾT REACTJS by THug24___________________________________________________________________
+
+BÀI 1: TẤT TẦN TẬT VỀ TYPESCRIPT
+
+1. So sánh null và undefined ?
+	Giống nhau: Đều biểu hiện cho 1 giá trị không xác định được
+	Khác nhau: 
+		+ null: Kiểu dữ liệu của null là object, thường được dùng để biểu thị rằng biến này chưa trỏ tới object nào
+		+ undefined: Thường được dùng để hiện thị các dữ liệu không xác định. VD khi ta tạo biến mà không gán giá trị.
+
+2. So sánh let const và var
+	- const khi khái báo sẽ không thể thay đổi giá trị
+	- var khi biến var được khái báo bên trong 1 block hoặc 1 hàm thì nó vẫn có thể được dùng lại bên ngoài còn let thì không
+	- let 
+
+BÀI 2: KHÔNG CÓ GÌ
+BÀI 3: REACT JS
+
+1. JSX là gì ?
+	- JSX là 1 cơ chế của ReactJS cho phép ta code html trong file JS
+
+2. Phân biệt state và prop
+	- Prop:
+		+ Khi 1 component nhận 1 props thì component đó chỉ có thể dùng chứ không chỉnh sửa được
+	- State:
+		+ State là trạng thái của component và có thể thay đổi bên trong component đó
+		+ Khi state thay đổi compoennt mặc định re-render
+
+BÀI 4: 
+
+1. Phân biệt Controlled Component và Uncontrolled Component
+
+- Controlled Component thì dữ liệu trong form sẽ được quản lý bởi React DOM thay vì DOm thuần túy . Uncontrolled thì ngược lại sử dụng DOM thuần
+- Trường hợp duy nhất khuyết khích dùng Uncontrolled chính là truyền file.
+
+2. Phân biệt foreach() và map()
+
+foreach() và map() đều là 2 phương thức cho phép ta duyệt mảng nhưng map() return được còn foreach() không return được
+
+BÀI 5:
+1. Context
+- Là 1 kỹ thuật giúp ta truyền được dữ liệu trực tiếp giữa các state với nhau mà không cần phải thông qua trung gian.
+
+BÀI 6:
+1. Kể tên vòng đời của COmponent
+	- Mount: Lần đầu được load (componentDidMount)
+	- Update: Thay đổi 	(componentDidUpdate)
+	- Unmount: Bị xóa	(componentWillUnmount)
+
+BÀI 7: CRUD trong React
+
+1.Các thao tác cơ bản 
+	+ GET: Lấy dữ liệu, 
+	+ POST tạo dữ liệu, 
+	+ PUT update dữ liệu, 
+	+ DELETE xóa dữ liệu
+
+2. HOF và HOC là gì :v
+- Cả 2 khái niệm trên đều ý chỉ tới 1 kỹ thuật dùng để nâng cấp component
+	+ HOF sẽ nhận vào các functional component để cho ra functional component xịn hơn
+	+ HOC sẽ nhận vào các class comonent để cho ra các class component xịn hơn
+
+BÀi 8: HOOK
+1. Mô tả lại lifecycle trong FUnctional COmponent (Dùng lệnh gì)
+
+-> dùng useEffect() để thay thế cho các hàm về leftcycle bên class component
+	
+ComponentDidMount: useEffect( () => {callback}, [])
+ComponentDidUpdate: useEffect( () => {callback}, [state])
+ComponentWillMount: 
+	+ useEffect( () => {callback có return}, [])
+	+ useEffect( () => {callback có return}, [state])
+
+ComponentDidMount, ComponentDidUpdate: useEffect( () => {callback})
+
+BÀi 9: REDUX
+
+1. Mô tả Redux
+	- Redux sẽ quản lý các state bằng 1 store duy nhất (Single source of truth)
+	- Các Component sẽ truyền action (dipatch) tới store để thay đổi state.
+	- Lúc này sẽ có 1 lớp trung gian gọi là Middleware để xử lý bất đồng bộ.
+	- Sau đó Action tiếp tục đi vào bên trong Reducer để xử lý state và trả về 1 state mới (nếu có thay đổi) cho các component đang theo dỏi (subscribe) state đó
+
+BÀi 10: MIDDLE WARE
+1. Tại sao phải có middle ware ?
+	- Reducer không thể xử lý bất đồng bộ trong đó.
+	- Nếu xử lý bất đồng bộ trong đó thì REDUX sẽ không thể nhận ra nó là Reducer
+	-> Sử dụng REDUX thunk
+
+*** Câu hỏi phụ
+1. So sánh LocalStore và SessionStore
+	a Thời gian sống của dữ liệu:
+LocalStorage: Dữ liệu được lưu trữ trong LocalStorage sẽ tồn tại cho đến khi người dùng xóa nó hoặc xóa toàn bộ lịch sử duyệt.
+SessionStorage: Dữ liệu được lưu trữ trong SessionStorage chỉ tồn tại trong suốt một phiên làm việc của trình duyệt. Nếu người dùng đóng tab hoặc trình duyệt, dữ liệu sẽ bị xóa.
+	b. Phạm vi sử dụng:
+LocalStorage: Dữ liệu được chia sẻ giữa tất cả các tab và cửa sổ mở trong cùng một trình duyệt từ cùng một nguồn (ví dụ: cùng một domain).
+SessionStorage: Dữ liệu chỉ được chia sẻ giữa các tab và cửa sổ mở trong cùng một trình duyệt trong một phiên làm việc.
+	c. Lưu trữ tối đa:
+LocalStorage: Thường có dung lượng lưu trữ lớn hơn (tích hợp động cơ lưu trữ lớn hơn).
+SessionStorage: Thường có dung lượng lưu trữ nhỏ hơn so với LocalStorage.
+
+
+

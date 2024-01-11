@@ -1,0 +1,115 @@
+TỔNG HỢP LÝ THUYẾT OOP - Update: v1.1 - 15h12p 19/12/2023 BY THUG24 - 
+TÀI LIỆU THAM KHẢO:	
+	+ Cô Loan SGU
+	+ Thầy Khải SGU
+	+ Cô Hồng Anh SGU
+	+ VTI Academy
+
+*************** CƠ BẢN (CHẮC CHẮN RA) ************************************
+
+1. Lập trình hướng đối tượng là gì ? Class là gì ? Object là gì ? Ví dụ?
+	- Lập trình hướng đối tượng:	
+		+ Một một phương pháp lập trình dùng để giải các vấn đề bằng quy toàn bộ mọi thứ về đối tượng có các đặc điểm (thuộc tính) và hành vi (Phương thức) cụ thể.
+		+ Lập trình hướng đối tượng được thể hiện thông qua cấu trúc Class trong phần lớn các ngôn ngữ lập trình.
+	
+
+	- Lớp (Class):
+		+ Là một khái niệm dùng để chỉ tập hợp các đối tượng có các đặc điểm chung về điểm (thuộc tính), hành vi (Phương thức) và chúng có các mối liên kế với nhau về ngữ nghĩa. 
+		+ Ta có thể xem lớp như là một "bản phác thảo" hoặc "khuôn mẫu" để tạo ra các đối tượng. 
+	VD: Lớp người có các thuộc tính: tên, tuổi v.v. Có các phương thức: di chuyển, ăn, uống, ngủ.
+
+	- Đối tượng (Object): 
+		+ Là thể hiện của lớp .
+		+ Có thể dùng để biểu diễn cho các sự vật như người, địa điểm, động vật v.v
+		+ Một đối tượng bao gồm thuộc tính và phương thức .
+	VD: Dựa vào ví dụ về lớp người ở trên thì ta có đối tượng A có tên là Nguyễn Văn A, có tuổi là 31 và có các hành động như ăn uống ngủ . đối tượng B có tên là Nguyễn Văn B, có tuổi là 15 và có các hành động như ăn uống ngủ .
+
+	
+
+2. Tính kế thừa (Inheritance) ? Ví dụ ?
+	- Là 1 trong 4 tính chất quan trọng của lập trình hướng đối tượng.
+	- Tính kế thừa cho phép ta mở rộng, viết thêm, phát triển một class mới dựa trên 1 class đã có sẵn mà không cần phải viết lại class đó.
+	- Tính kế thừa được thể hiện qua từ khóa: Extends
+	-> Tính kế thừa được sử dụng chủ yếu để tăng tính tái sử dụng cho code.
+	VD: Ta có lớp Người:
+		+ Thuộc tính: Họ tên, tuổi
+		+ Phương thức: Ăn, ngủ
+	Sau đó ta có lớp sinh viên kế thừa (Extends) lớp người. Lớp sinh viên mới này sẽ được thừa hưởng tất cả các thuộc tính (tên, tuổi) và phương thức (ăn, ngủ) của lớp người. Từ đó ta có thể thêm vào các thuộc tính và phương thức đặc trưng của lớp sinh viên như thuộc tính: mã số sinh viên, ngành, khoa và phương thức: đóng học phí, đăng ký môn học.
+	
+
+3. Tính đa hình (Polymorphism) ? Ví dụ?
+	- Là 1 trong 4 tính chất quan trọng của lập trình hướng đối tượng.
+
+	- Poly là nhiều, morphs là dạng 
+	- Tính đa hình có thể được hiểu là các đối tượng  của các lớp khác nhau khi thực hiện cùng một hành động có thể dẫn đến những kết quả khác nhau. 
+	-> Tính đa hình cho phép một đối tượng có nhiều thể hiện khác nhau tùy vào hoàn cảnh.
+
+	- Tính đa hình được thể hiện chủ yếu qua phương thức Override và Overload
+		+ Override (Ghi đè): 
+		VD: 
+		class Animal {
+			public void keu(){
+				System.out.println("Tiếng kêu của động vật");
+			}
+		}
+
+
+		class Dog extends Animal{
+			@Override
+			public void keu(){
+				System.out.println("Tiếng kêu của chó");
+			}
+		}
+
+		class Cat  extends Animal{
+			@Override
+			public void keu(){
+				System.out.println("Tiếng kêu của mèo");
+			}
+		}
+		
+		-> Đối tượng Cat khi dùng keu() sẽ in ra "Tiếng kêu của mèo", đối tượng Dog sẽ in ra "Tiếng kêu của chó"
+
+		+ Overload (nạp chồng): 
+		VD: 
+		class Triangle{
+			public double area(double chieuCao, double doDaiDay){
+				return ..... (Trả về diện tính của tam giác dựa trên chiều cao và độ dài đáy);
+			}
+
+			public double area(double doDaiCanh1, double doDaiCanh2, double doDaiCanh3){
+				return ..... (Trả về diện tính của tam giác dựa trên độ dài 3 cạnh);
+			}
+		} 
+
+
+
+4. Tính đóng gói (Encapsulation) ? Ví dụ?
+	- Là 1 trong 4 tính chất quan trọng của lập trình hướng đối tượng.
+	- Tính đóng gói được thể hiện qua access modifier: private
+	- Đây là một cơ chế không cho phép ta truy cập trực tiếp vào các thuộc tính của các đối tượng mà buộc phải thông qua các phương thức đặc biệt (mặc định là getter, setter).
+	-> Tính đóng gói được sử dụng nhằm đảm bảo tính bảo mật và toàn vẹn của đối tượng.
+	
+	VD: Ta có
+	
+	class Person{
+		private String ten;
+		
+		// Các getter setter tương ứng
+		public String getTen(){return this.ten;}
+		public void setTen(String ten){ this.ten = ten;}
+	}
+	
+	Ta không thể truy cập vào thuộc tính ten một cách trực tiếp mà phải truy cập thông qua các getTen() setTen().
+
+
+5. Tính trừu tượng (Abstraction) ? Ví dụ ?
+	- Là 1 trong 4 tính chất quan trọng của lập trình hướng đối tượng.
+	- Tính trừu tượng là khả năng trừu tượng hóa các thuộc tính và phương thức của các đối tượng, từ đó ta có thể tạo ra các mô hình đơn giản hơn 
+		-> Cho phép chúng ta tập trung vào các chi tiết quan trọng của đối tượng và bỏ qua những chi tiết phức tập không quan trọng khác.
+
+	 Ví dụ: Khi bạn lái 1 chiếc xe ô tô, bạn chỉ biết các chức năng như phanh dùng để thắng, ga dùng để lên ga và tiến về phía trước  còn lại mọi thứ hoạt động bên dưới đã được trừu tượng hóa để chúng ta không tập trung vào các chi tiết phức tập này . Tương tự, trong lập trình hướng đối tượng, tính trừu tượng giúp tập trung vào cách sử dụng đối tượng mà không cần biết chi tiết cài đặt nội tại của nó.
+		
+	-> Tính trừu tượng giúp bạn trọng tâm hơn vào đối tượng thay vì quan tâm đến cách nó thực hiện.
+
+

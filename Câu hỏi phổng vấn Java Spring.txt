@@ -1,0 +1,236 @@
+___________________________________________________________________________________BÀI 1____________________________________________________________________________________________________
+* CÂU 1: HIBERNATE LÀ GÌ?
+	- Là 1 Framework.
+	- Mã nguồn mở (Open sources).
+	- ORM Tool.
+	- Dùng để ánh xạ các đối tượng trong ngôn ngữ lập trình hướng đối tượng với các table trong cơ sở dữ liệu.
+	- Dùng công cụ Java.
+
+* CÂU 2: ORM LÀ GÌ? (Object relationship mapping)
+	- Là kỹ thuật lập trình.
+	- Dùng để ánh xạ các đối tượng trong ngôn ngữ lập trình hướng đối tượng với các table trong cơ sở dữ liệu.
+
+* CÂU 3: JPA LÀ GÌ ?
+	- Java Persistence API 
+	- Là 1 chuẩn Java dùng cho các ORM tools
+
+* CÂU 4: FILE hibernate.cfg.xml DÙNG ĐỂ LÀM GÌ
+	- Chứa các thông tin cấu hình liên quan tới database
+
+* CÂU 5: SESSION FACTORY LÀ GÌ ?
+	- Là 1 class trong Hibernate nó được sử dụng để quản lý các Session cũng như là quản lý các thông số configure tới Database
+
+* CÂU 6: SESSION LÀ GÌ?
+	- Session là 1 phiên làm việc cụ thể dùng để truy vấn xuống cơ sở dữ liệu nó có thể là Create, Update, Read, Delete 
+
+* CÂU 7: PERSISTENCE OBJECT LÀ GÌ ?
+	- Là 1 đối tượng trong Java của 1 table SQL, các trường dữ liệu của PerObject sẽ được ánh xạ tới các trường của Table để tạo nên sự thống nhất của dữ liệu.
+
+* CÂU 8: CÓ MẤY CÁCH ĐỂ CONFIG
+	- Có 2 cách:
+		+ xml file
+		+ Anotation (Trong phạm vi khóa học).
+
+* CÁC Ý NGHĨA CỦA CÁC ANOTATION PHỔ BIẾN TRONG HIBERNATE
+	@Entity			: Đánh dấu class này là 1 table trong database
+	@Table			: Dùng để điền cụ thể tên table và tên database muốn kết nối
+	@Id			: Đánh dấu thuộc tính này là khóa chính
+	@Temporal		: Dùng để chuyển đổi các kiểu dữ liệu ngày tháng
+	@Column			: Đánh dấu đây là 1 cột trong table
+	@Formula		: Dùng để thể hiện các cột giả (Được tạo trong 1 quá trình thao tác nào đó không được lưu chính thức)
+	@ColumnDefault		: Set giá trị mặc định cho cột ( Hoặc sử dụng columnDefinition bên trong @Column)
+	@CreationTimestamp	: Set giá trị mặc định cho cột thời gian
+	@PrePersist		: Đánh dấu phương thức đó là 1 phương thức PrePersist, phương thức này sẽ được khi đối tượng được tạo để set các giá trị mặc định
+
+
+
+___________________________________________________________________________________BÀI 2____________________________________________________________________________________________________
+
+* CÂU 1: CÓ BAO NHIÊU CÁCH ĐỂ CHUYỂN HÓA CÁC ENUM SANG JAVA
+	- Có 2 cách chính cụ thể là:
+		+ @Enumerated:	Có 2 cách chuyển bên trong là String hoặc Ordinal
+			String là chuyển trực tiếp các chuỗi ENUM trong database sang Java
+			Ordinal là chuyển dữ liệu số trong SQL sang ENUM trong Java
+		+ @Converter: Thay vì sử dụng 2 cách trên thì ra dùng @Converter để chuyển. @Converter cho phép ta custom các giá trị ENUM theo ý muốn.
+
+* CÂU 2: CÓ BAO NHIÊU CÁCH ĐỂ THIẾT LẬP GIÁ TRỊ CHO KHÓA CHÍNH BẰNG @GeneratedValue
+	- 4 cách
+		+ GenerationType.IDENTITY: Giống với auto increment bên SQL
+		+ Generation.SEQUENCE: Giống auto increment nhưng ta thiết lập được bước nhảy , khởi đầu
+		+ GenerationAUTO: Sinh ra các giá trị UUID dựa trên TIMESTAMP -> sinh ra các giá trị khác nhau tuyệt đối.
+		+ Custom Generator: Ta tự thiết lập quy luật mặc định cho khóa chính.
+
+* CÂU 3: CÓ MẤY CÁCH ĐỂ THIẾT LẬP KHÓA CHÍNH CÓ NHIỀU TRƯỜNG? 
+	- 2 cách
+		+ @Embeddable & @EmbeddedId -> Tạo 1 trường chứa nhiều khóa chính
+		+ @Embeddable & @IdClass -> Đánh dấu nhiều trường đều là khóa chính
+
+
+___________________________________________________________________________________BÀI 3____________________________________________________________________________________________________
+
+* CÂU 1: Mối quan hệ 1-1, 1-n, n-n là gì ?
+	-> Xem trong slide
+* Câu 2: Có bao nhiêu cách dùng để configure khóa ngoại
+	- CÓ 3:
+		+ @OneToOne: 
+		+ @OneToMany:
+		+ @ManyToMany: Có 3 cách để configure
+				- Basic
+				- Composite key
+				- New Enitty
+					-> Cách 2 3 đều tạo 1 class mới trong Java chỉ khác nhau ở việc key của class. Cách 1 không cần  tạo entity mà configure trực tiếp ở trong 1 trong 2 class
+
+* Câu 3: Lazy Loading và Eager Loadding
+	- Lazy: Load những gì user cần
+	- Eager: Load tất cả những gì mình có
+___________________________________________________________________________________BÀI 4____________________________________________________________________________________________________
+
+* Câu 1: CÓ BAO NHIÊU LOẠI KẾ THỪA INHERITANCE
+	- Có 4 loại:
+		+ SIngle table: Gộp toàn bộ vào 1 bảng và thêm type vào để phân loại.
+		+ Table per class: Tách ra thành các table riêng hết mỗi table đều có có field riêng và chung.
+		+ Join: Mỗi table riêng biệt, tách hết các điểm chung chỉ chừa lại ID để xác định
+		+ MappedSuperclass: Tách ra hoàn toa2nn không còn liên quan gì tới nhau.
+
+* Câu 2: Có 3 loại truy vấn chính trong Hibernate SQL, HQL, Criteria
+
+___________________________________________________________________________________BÀI 5____________________________________________________________________________________________________
+
+* Câu 1: Trình bầy mô hình ba lớp (3 layer)
+	- Controller: Là điểm đầu mà các client user truy cập tới
+	- Service: Xử lý các valid
+	- Repository: Truy vấn SQL
+
+* Câu 2: API là gì ? API Result là gì ?
+	- API: API là cơ chế cho phép 2 thành phần phần mềm giao tiếp với nhau bằng một tập hợp các định nghĩa và giao thức. 
+	- API Result: Là 1 chuẩn các quy tắc mà các Dev khi viết API phải tuân thủ.
+
+* Câu 3: WEB là gì ? WEB service là gì ?
+	- WEB: NGười dùng truy cập vào URL và server trả về page cho người dùng đọc (Không tương tác được).
+	- WEB Service: Là web mà người dùng có thể tương tác được với Server 
+
+* Câu 4: JSON XML là gì ?
+	- Các dữ liệu của chúng ta thường được gói lại dưới dạng JSON hoặc XML để truyền cho các chương trình khác đọc thông qua API.
+
+
+___________________________________________________________________________________BÀI 6____________________________________________________________________________________________________
+
+* Câu 1: SOLID là gì ?
+	- Là tập hợp các nguyên tắc thiết kế phần mềm và có 5 quy tắc chính.
+		1. Single Responsibility: Mỗi class được thiết kế ra để thực hiện đúng 1 chức năng và chỉ một
+		2. Open/closed: Thay vì thay đổi code của một class thì ta sẽ kế thừa nó và viết thêm.
+		3. Liskov substitution: Các class con kế thừa các class cha nhưng không làm thay đổi tính đúng đắn của việc kế thừa.
+		4. Interface segregation: Các Interface nên được chia nhỏ ra để các lớp khi implement chỉ phải @Overriding đúng những phương thức mà class đó cần.
+		5. Dependency Inversion: Các module cấp cao không nên phụ thuộc vào những module cấp thấp (Những module lớn không nên phụ thuộc vào những modole đơn lẽ ít chức năng hơn)
+* Câu 2: Hãy trình bầy về Inversion Of Controll (IoC) và các giải pháp
+	- Là 1 pattern được tạo ra để giải quyết vấn đề của Depenency Inversion
+	- Có 2 cách để giải quyết 1. Dependency Lookup và Dependency Injection nhưng trong phạm ví khóa học ta chỉ đào sâu vào 1 là Dependency Injection
+		-> Dependency Injection: Mọi thay đổi của các module cấp thấp đều thay đổi các dòng code liên quan trọng module cấp cao
+		-> DI là gì ?: DI là 1 nguyên lý trong lập trình hướng đối tượng nhằm giảm sự phụ thuộc trong hệ thống . Các đối tượng sẽ không khởi tạo các đối tượng bị phụ thuộc vào nó mà nó sẽ nhận từ bên ngoài .
+
+* Câu 3: Có bao nhiêu cách Injection
+	- 3 cách
+		1. Constructor
+		2. Method: Dùng trong setter getter
+		3. Interface
+
+* Câu  4: Spring core là gì ?
+
+	- Spring Core là một phần của Spring Framework, cung cấp các tính năng cơ bản và cơ sở hạ tầng cho toàn bộ framework. Nó bao gồm một số khái niệm quan trọng như Inversion of Control (IoC) và Dependency Injection (DI), giúp quản lý và kết nối các thành phần của ứng dụng.
+
+* Câu 5: Top-down Coding
+	
+	- Thảo luận với khách
+	- Thiết kế giao diện và API
+	- Code giao diện
+	- Code backend
+	- Code Database
+
+* Câu 6: Bottom-up Coding
+	
+	- Code database
+	- Code back end
+	- Code front end
+	- Thảo luận
+
+
+* MỘT SỐ ANNOTATION DO THUG SOẠN
+	- @AutoWired: Nếu ta đánh dấu @AutoWired này lên thuộc tính IDepartmentRepository nó sẽ tự đi tìm các BEAN (Các class đã implements IDepartmentRepository mà có đánh dấu @Component, @Service, @Repository .... ) và inject vào thuộc tính đó.
+	- @Component, @Service, @Repository ... : đánh dấu class đó trở thành 1 Bean lúc này khi được gọi bởi @AutoWired trong 1 class khác thì Spring sẽ tự động Inject vào.
+	- @Configuration: Đánh dấu class này là 1 class tự cung cấp Bean
+	- @Bean đánh dấu các phương thức bên trong @Configuration với ý là nghĩa Bean này được  Custom bởi Dev và có thể dùng khi được gọi đến
+	- @Primary: Đánh dấu vào trong các Bean lúc này nếu 1 COmponent có nhiều Bean thì Spring sẽ ưu tiên lấy Bean được đáh dấu @Primary.
+	- @Qualify: Dùng để chọn Bean mà bạn muốn (Đặt ngay bên dưới @AUtoWired) cụ thể xem slide.
+	- @CrossOrigin: Dùng để cho phép bên thứ 3 truy cập vào API mà chúng ta viết.
+			
+
+* Ý kiến của bạn là đúng đắn. Dưới đây là một mô tả chi tiết: (ĐƯỢC SỬA LẠI BỞI CHAT GPT)
+
+@Autowired: Đánh dấu trên các thuộc tính, phương thức hoặc constructor để Spring tự động inject các bean tương ứng.
+@Component, @Service, @Repository, ...: Các annotation này đánh dấu một class là một Spring bean. @Component là generic annotation, còn @Service và @Repository thường được sử dụng để chỉ định mục đích cụ thể của bean. Những bean này có thể được tự động tìm thấy và quản lý bởi Spring container.
+
+@Configuration: Đánh dấu một class là một nguồn cấu hình cho Spring IoC container. Các phương thức có chứa @Bean sẽ tạo ra các bean được quản lý bởi Spring.
+
+@Bean: Đánh dấu một phương thức trong một class @Configuration, chỉ định rằng phương thức này sẽ tạo và cung cấp một bean mà Spring sẽ quản lý.
+
+
+___________________________________________________________________________________BÀI 7____________________________________________________________________________________________________
+
+* Câu 1: Spring Data là gì ?
+	- Là 1 phần của Spring , nó cho phép ta thực hiện các thao tác CRUD một cách ngắn gọn 
+	- Có thể sử dụng với cả SQL và NoSQL
+	- Ta không cần viết truy vấn xuống Database ở Repository, Spring Data sẽ làm giúp ta và khi cần ta chỉ cần gọi tên phương thức theo các chuẩn được quy định.
+
+* Câu 2: Lombok là gì ?
+	- Là 1 thư viện Java giúp cho Dev không cần phải code các Getter Setter Constructor hay toString .
+
+* Câu 3: SpringBootsDevTool là gì ?
+	- Là 1 moduel trong SpringBoots giúp chúng ta không cần phải Reset lại Server khi thay đổi code. (Giống LiveServer trong Visual Studio Code)
+
+
+___________________________________________________________________________________BÀI 8____________________________________________________________________________________________________
+
+* Câu 1: Model Mapper là gì ?
+	- Là 1 thư viện trong Java giúp ta chuyển đổi các Entity thành các form, DTO của chính các ENtity đó một cách tự động.
+
+* Câu 2: Specification là gì ?
+	- Là 1 Interface trong Java SPring , các phương thức của nó cho phép ta sử dụng để build các điều kiện truy vấn cho SQL.
+
+* Câu 3: HEATOAS là gì ?
+	- Là 1 quy tắc thiết kế API.
+	- Thay vì ta dồn hết tài Nguyên vào 1 API thì ta có thể tách thành các API nhỏ khác nhau và đặt chúng trong các API có liên quan lúc này ta có thể linh hoạt hơn trong việc show ra tài nguyên.
+
+* MỘT SỐ ANNOTATION :
+	- @JsonFormat: chỉnh lại định dạng ngày tháng trong file JSON
+	- @JsonProperty: Chỉnh lại tên các trường trong bên trong file JSON
+	
+	
+___________________________________________________________________________________BÀI 9____________________________________________________________________________________________________
+* Câu 1: Transaction là gì ?
+	- Khi ta sử dụng các phương thức CRUD mà có tác động tới database , nếu xảy ra lỗi thì cơ chế Transaction sẽ call back thời điểm trước khi lỗi xảy ra.
+
+* Câu 2: Validate
+	- Là 1 cơ chế giúp ta kiểm tra đầu vào các dữ liệu, tránh những dữ liệu không hợp lệ có thể ảnh hưởng hệ thống.
+
+* Câu 3: Internationalization
+	- Là 1 kỹ thuật giúp chúng ta có thể chuyển đổi các Message thành các ngôn ngữ khác nhau.
+
+* Câu 4: Swagger là gì ?
+	- Là 1 công cụ mở rộng của Spring cho phép ta xem tất cả các API đã có trong project ( Hiển thị dưới dạng giao diện web), giúp ta dễ dàng quản lý các API trong project.
+
+* Câu 5: SPringDataRest là gì ?
+	- Là 1 công cụ mở rộng của Spring cho phép ta thấy được các API CRUD còn thiếu dựa trên Repository và nhiệm vụ của chúng ta chỉ là code cho hoàn thành.
+
+___________________________________________________________________________________BÀI 10___________________________________________________________________________________________________
+
+* Authentication: Liên quan đến quá trình xác minh danh tính của người dùng, thường thông qua việc mã hóa và xác nhận thông tin đăng nhập như tên đăng nhập và mật khẩu.
+
+* Authorization: Là quá trình quyết định xem một người dùng cụ thể có quyền truy cập vào một phần nhất định của hệ thống hay không.
+
+* Log4j: Là một công cụ ghi log trong ứng dụng Java. Thông thường, nó được sử dụng để ghi lại các sự kiện quan trọng, lỗi, hoặc thông tin khác của ứng dụng vào các tệp log thay vì in chúng ra console. Điều này giúp quản trị và theo dõi hệ thống một cách hiệu quả hơn.
+
+* JWT: 
+
+
+
+
